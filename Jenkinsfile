@@ -27,7 +27,7 @@ pipeline {
                                                 name: 'myparam'
                                             )
                                         ], 
-                                        submitter: 'user1,user2,group1', 
+                                        submitter: 'user1,user2,group1,opsApprover', 
                                         submitterParameter: 'APPROVER')	
                             }
                 }
