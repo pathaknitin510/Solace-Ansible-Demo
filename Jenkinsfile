@@ -7,13 +7,14 @@ pipeline {
         stage('Stage 1') {
             agent none
             steps {
-             
+              mail bcc: '', body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL de build: ${env.BUILD_URL}", cc: '', 
+		      charset: 'UTF-8', from: 'pathaknitin510@gmail.com', mimeType: 'text/html', replyTo: '', subject: "Approval Pending: Project name -> ${env.JOB_NAME}", to: "nitinpathak.orai@gmail.com";  
                 timeout(60) {                // timeout waiting for input after 60 minutes
                     script {
                         // capture the approval details in approvalMap. 
                          approvalMap = input( 
                                         id: 'test', 
-										message: 'Hello', 
+				        message: 'Hello', 
                                         ok: 'Proceed?', 
                                         parameters: [
                                             choice(
