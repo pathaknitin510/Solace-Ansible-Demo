@@ -17,17 +17,17 @@ pipeline {
                                         ok: 'Proceed?', 
                                         parameters: [
                                             choice(
-                                                choices: 'apple\npear\norange', 
-                                                description: 'Select a fruit for this build', 
-                                                name: 'FRUIT'
+                                                choices: 'Dev-env.ini\nTest-env.ini', 
+                                                description: 'Select an Env for this build', 
+                                                name: 'Environment'
                                             ),
                                         string(
                                                 defaultValue: '', 
                                                 description: '', 
-                                                name: 'myparam'
+                                                name: 'Task'
                                             )
                                         ], 
-                                        submitter: 'user1,user2,group1,opsApprover', 
+                                        submitter: 'opsApprover', 
                                         submitterParameter: 'APPROVER')	
                             }
                 }
@@ -39,8 +39,8 @@ pipeline {
             steps {
                 // print the details gathered from the approval
                 echo "This build was approved by: ${approvalMap['APPROVER']}"  	
-                echo "This build is brought to you today by the fruit: ${approvalMap['FRUIT']}"
-                echo "This is myparam: ${approvalMap['myparam']}"
+                echo "This build is made using Env: ${approvalMap['Environment']}"
+                echo "This build is using Task: ${approvalMap['Task']}"
             }
         }
     }
