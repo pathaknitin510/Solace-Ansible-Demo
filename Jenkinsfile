@@ -1,3 +1,6 @@
+ENV = Dev-env.ini
+TASK = queues
+
 def approvalMap             // collect data from approval step
 
 pipeline {
@@ -39,6 +42,8 @@ pipeline {
 
             steps {
                 // print the details gathered from the approval
+				ENV = ${approvalMap['Environment']}
+				TASK = ${approvalMap['Task']}
                 echo "This build was approved by: ${approvalMap['APPROVER']}"  	
                 echo "This build is made using Env: ${approvalMap['Environment']}"
                 echo "This build is using Task: ${approvalMap['Task']}"
@@ -48,7 +53,7 @@ pipeline {
             agent any
 
             steps {
-              sh  'ansible-playbook solace-vpn.yml --tags ${approvalMap['Task']} -i ${approvalMap['Environment']}'
+              sh  'ansible-playbook solace-vpn.yml --tags TASK -i ENV'
             }
         }
     }
