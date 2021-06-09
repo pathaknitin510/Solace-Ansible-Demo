@@ -42,8 +42,8 @@ pipeline {
 
             steps {
                 // print the details gathered from the approval
-				ENV = ${approvalMap['Environment']}
-				TASK = ${approvalMap['Task']}
+				//ENV = ${approvalMap['Environment']}
+				//TASK = ${approvalMap['Task']}
                 echo "This build was approved by: ${approvalMap['APPROVER']}"  	
                 echo "This build is made using Env: ${approvalMap['Environment']}"
                 echo "This build is using Task: ${approvalMap['Task']}"
