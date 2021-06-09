@@ -48,7 +48,7 @@ pipeline {
             agent any
 
             steps {
-              sh  'ansible-playbook solace-vpn.yml --tags $Task -i $Environment'
+              sh  'ansible-playbook solace-vpn.yml --tags ${approvalMap['Task']} -i ${approvalMap['Environment']}'
             }
         }
     }
